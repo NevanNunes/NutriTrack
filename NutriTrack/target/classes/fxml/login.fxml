@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.nutritrack.NutriTrack.javafx.LoginController"
+      styleClass="login-container">
+
+    <padding>
+        <Insets top="50.0" right="50.0" bottom="50.0" left="50.0"/>
+    </padding>
+
+    <Label text="NutriTrack" styleClass="title-label">
+        <font>
+            <Font size="36.0"/>
+        </font>
+    </Label>
+
+    <TextField fx:id="usernameField"
+               promptText="Username"
+               maxWidth="300.0"/>
+
+    <PasswordField fx:id="passwordField"
+                  promptText="Password"
+                  maxWidth="300.0"/>
+
+    <Label fx:id="errorLabel"
+           styleClass="error-label"
+           visible="false"/>
+
+    <Button fx:id="loginButton"
+            text="Login"
+            onAction="#handleLogin"
+            styleClass="primary-button"
+            maxWidth="300.0"/>
+
+    <HBox alignment="CENTER" spacing="5.0">
+        <Label text="Don't have an account?"/>
+        <Hyperlink fx:id="registerLink"
+                   text="Register"
+                   onAction="#handleRegisterLink"/>
+    </HBox>
+
+</VBox>

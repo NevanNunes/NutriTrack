@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.nutritrack.NutriTrack.javafx.AddMealController"
+      spacing="15" styleClass="add-meal-dialog">
+
+    <padding>
+        <Insets top="20" right="30" bottom="20" left="30"/>
+    </padding>
+
+    <!-- Title -->
+    <Label text="Add New Meal" styleClass="dialog-title"/>
+
+    <!-- Meal Type -->
+    <VBox spacing="5">
+        <Label text="Meal Type:" styleClass="form-label"/>
+        <ComboBox fx:id="mealTypeComboBox" maxWidth="Infinity" promptText="Select meal type"/>
+    </VBox>
+
+    <!-- Food Name -->
+    <VBox spacing="5">
+        <Label text="Food Name:" styleClass="form-label"/>
+        <TextField fx:id="foodNameField" promptText="Enter food name"/>
+    </VBox>
+
+    <!-- Portion Size -->
+    <VBox spacing="5">
+        <Label text="Portion Size (g):" styleClass="form-label"/>
+        <TextField fx:id="portionSizeField" promptText="Enter portion size in grams"/>
+    </VBox>
+
+    <!-- Nutritional Information -->
+    <GridPane hgap="10" vgap="10">
+        <Label text="Calories:" styleClass="form-label"
+               GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="caloriesField" promptText="kcal"
+                  GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <Label text="Protein:" styleClass="form-label"
+               GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="proteinField" promptText="grams"
+                  GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="Carbs:" styleClass="form-label"
+               GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="carbsField" promptText="grams"
+                  GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <Label text="Fat:" styleClass="form-label"
+               GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField fx:id="fatField" promptText="grams"
+                  GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+    </GridPane>
+
+    <!-- Time of Meal -->
+    <VBox spacing="5">
+        <Label text="Time:" styleClass="form-label"/>
+        <HBox spacing="10">
+            <DatePicker fx:id="datePicker"/>
+            <ComboBox fx:id="hourComboBox" promptText="Hour"/>
+            <ComboBox fx:id="minuteComboBox" promptText="Minute"/>
+        </HBox>
+    </VBox>
+
+    <!-- Notes -->
+    <VBox spacing="5">
+        <Label text="Notes (Optional):" styleClass="form-label"/>
+        <TextArea fx:id="notesField" promptText="Add any notes about this meal"
+                  prefRowCount="3"/>
+    </VBox>
+
+    <!-- Error Label -->
+    <Label fx:id="errorLabel" styleClass="error-label" visible="false"/>
+
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Cancel" onAction="#onCancel" styleClass="secondary-button"/>
+        <Button text="Save Meal" onAction="#onSave" styleClass="primary-button"/>
+    </HBox>
+
+</VBox>

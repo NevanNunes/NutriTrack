@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.*?>
+<?import javafx.collections.*?>
+<?import java.time.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.nutritrack.NutriTrack.javafx.HistoryController"
+            styleClass="history-container">
+
+    <!-- Header -->
+    <top>
+        <VBox spacing="20" styleClass="header-container">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Meal History" styleClass="page-title"/>
+
+            <!-- Date Filter Section -->
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <Label text="Filter by Date:" styleClass="filter-label"/>
+                <DatePicker fx:id="startDatePicker" promptText="Start Date"/>
+                <Label text="to"/>
+                <DatePicker fx:id="endDatePicker" promptText="End Date"/>
+                <Button fx:id="applyFilterButton"
+                        text="Apply Filter"
+                        onAction="#onApplyFilter"
+                        styleClass="filter-button"/>
+                <Button fx:id="clearFilterButton"
+                        text="Clear"
+                        onAction="#onClearFilter"
+                        styleClass="clear-button"/>
+            </HBox>
+
+            <!-- Summary Section -->
+            <GridPane hgap="20" vgap="10" styleClass="summary-container">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="150"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="150"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="150"/>
+                </columnConstraints>
+
+                <VBox GridPane.columnIndex="0" styleClass="summary-card">
+                    <Label text="Total Meals" styleClass="summary-label"/>
+                    <Text fx:id="totalMealsText" text="0" styleClass="summary-value"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="1" styleClass="summary-card">
+                    <Label text="Average Daily Calories" styleClass="summary-label"/>
+                    <Text fx:id="avgCaloriesText" text="0 kcal" styleClass="summary-value"/>
+                </VBox>
+
+                <VBox GridPane.columnIndex="2" styleClass="summary-card">
+                    <Label text="Most Common Meal" styleClass="summary-label"/>
+                    <Text fx:id="commonMealText" text="-" styleClass="summary-value"/>
+                </VBox>
+            </GridPane>
+        </VBox>
+    </top>
+
+    <!-- Main Content - Meals Table -->
+    <center>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <!-- Search and Export Section -->
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <TextField fx:id="searchField"
+                          promptText="Search meals..."
+                          HBox.hgrow="ALWAYS"/>
+                <Button fx:id="exportButton"
+                        text="Export to CSV"
+                        onAction="#onExport"
+                        styleClass="export-button"/>
+            </HBox>
+
+            <!-- Meals Table -->
+            <TableView fx:id="mealsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="dateColumn" text="Date"/>
+                    <TableColumn fx:id="timeColumn" text="Time"/>
+                    <TableColumn fx:id="mealTypeColumn" text="Meal Type"/>
+                    <TableColumn fx:id="foodNameColumn" text="Food"/>
+                    <TableColumn fx:id="portionColumn" text="Portion (g)"/>
+                    <TableColumn fx:id="caloriesColumn" text="Calories"/>
+                    <TableColumn fx:id="proteinColumn" text="Protein (g)"/>
+                    <TableColumn fx:id="carbsColumn" text="Carbs (g)"/>
+                    <TableColumn fx:id="fatColumn" text="Fat (g)"/>
+                    <TableColumn fx:id="notesColumn" text="Notes"/>
+                    <TableColumn fx:id="actionsColumn" text="Actions"/>
+                </columns>
+            </TableView>
+
+            <!-- Pagination -->
+            <HBox spacing="10" alignment="CENTER">
+                <Pagination fx:id="pagination" styleClass="meals-pagination"/>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>
