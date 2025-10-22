@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.nutritrack.NutriTrack.javafx.DashboardController"
+            styleClass="dashboard-container">
+
+    <!-- TOP: Header with logout -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="10" styleClass="header">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20"/>
+            </padding>
+            <Button text="Back" onAction="#handleBack" styleClass="back-button"/>
+            <Label text="NutriTrack Dashboard" styleClass="header-title" HBox.hgrow="ALWAYS">
+                <font>
+                    <Font size="24"/>
+                </font>
+            </Label>
+            <Button fx:id="logoutButton" text="Logout" onAction="#onLogout" styleClass="logout-button"/>
+        </HBox>
+    </top>
+
+    <!-- LEFT: Navigation Sidebar -->
+    <left>
+        <VBox spacing="10" styleClass="sidebar">
+            <padding>
+                <Insets top="20" right="10" bottom="20" left="10"/>
+            </padding>
+            <Button fx:id="dashboardButton" text="Dashboard" styleClass="nav-button" onAction="#navigateToDashboard"/>
+            <Button fx:id="addMealButton" text="Add Meal" styleClass="nav-button" onAction="#navigateToAddMeal"/>
+            <Button fx:id="historyButton" text="History" styleClass="nav-button" onAction="#navigateToHistory"/>
+            <Button fx:id="profileButton" text="Profile" styleClass="nav-button" onAction="#navigateToProfile"/>
+        </VBox>
+    </left>
+
+    <!-- CENTER: Main Content -->
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="main-content">
+            <VBox spacing="20">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
+                <!-- Stats Cards -->
+                <HBox spacing="20" alignment="CENTER">
+                    <VBox styleClass="stat-card">
+                        <Label text="Daily Calories" styleClass="stat-title"/>
+                        <Text fx:id="caloriesText" text="0/2000" styleClass="stat-value"/>
+                    </VBox>
+                    <VBox styleClass="stat-card">
+                        <Label text="Macros Distribution" styleClass="stat-title"/>
+                        <Text fx:id="macrosText" text="P: 0g C: 0g F: 0g" styleClass="stat-value"/>
+                    </VBox>
+                    <VBox styleClass="stat-card">
+                        <Label text="BMI" styleClass="stat-title"/>
+                        <Text fx:id="bmiText" text="0.0" styleClass="stat-value"/>
+                    </VBox>
+                </HBox>
+
+                <!-- Today's Meals Table -->
+                <VBox spacing="10">
+                    <Label text="Today's Meals" styleClass="section-title">
+                        <font>
+                            <Font size="18"/>
+                        </font>
+                    </Label>
+                    <TableView fx:id="mealsTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="timeColumn" text="Time"/>
+                            <TableColumn fx:id="typeColumn" text="Type"/>
+                            <TableColumn fx:id="foodColumn" text="Food"/>
+                            <TableColumn fx:id="caloriesColumn" text="Calories"/>
+                            <TableColumn fx:id="proteinColumn" text="Protein (g)"/>
+                            <TableColumn fx:id="carbsColumn" text="Carbs (g)"/>
+                            <TableColumn fx:id="fatColumn" text="Fat (g)"/>
+                            <TableColumn fx:id="actionsColumn" text="Actions"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <!-- Recommendations Section -->
+                <VBox spacing="10">
+                    <Label text="Recommendations" styleClass="section-title">
+                        <font>
+                            <Font size="18"/>
+                        </font>
+                    </Label>
+                <TextArea fx:id="recommendationsText"
+                          text="Loading personalized recommendations..."
+                          styleClass="recommendations-box"
+                          editable="false"
+                          wrapText="true"/>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>
